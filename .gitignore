@@ -1,0 +1,58 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment and sensitive credential files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.pem
+*.key
+*.cert
+credentials.json
+token.json
+secrets.json
+
+# Build and distribution directories
+dist/
+build/
+out/
+.cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE & Editor configurations
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Temporary & Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.temp/
+.tmp/

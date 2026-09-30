@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Catalog | Rachayati Designs - Spiritual Art & Fridge Magnets</title>
+    <meta name="description" content="Browse our complete catalog of handcrafted spiritual fridge magnets, sacred mantra art prints, and devotional gifts by Rachayati Designs.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=8">
+</head>
+<body class="shop-page-body">
+
+    <!-- Main Navigation Header -->
+    <header class="main-header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-mandala-icon">
+                    <img src="Logo.jpg" alt="Rachayati Designs" onerror="this.innerHTML='<i class=\'fa-solid fa-om\'></i>'">
+                </div>
+                <div class="brand-text-block">
+                    <span class="brand-main-title">Rachayati</span>
+                    <span class="brand-sub-title">Designs</span>
+                </div>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item has-dropdown">
+                    <div class="nav-link-row">
+                        <a href="shop.html" class="nav-link active">Shop</a>
+                        <button type="button" class="nav-dropdown-toggle" aria-label="Toggle Shop categories">
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                    </div>
+                    <div class="nav-dropdown">
+                        <a href="shop.html?category=all" class="dropdown-item" style="font-weight: 700; color: var(--gold-primary);">All 40 Products →</a>
+                        <a href="shop.html?category=bandhanwar" class="dropdown-item">Sacred Bandhanwars (8)</a>
+                        <a href="shop.html?category=fridge-magnet" class="dropdown-item">Devotional Fridge Magnets (14)</a>
+                        <a href="shop.html?category=tulsi-dress" class="dropdown-item">Tulsi Maharani Dresses (12)</a>
+                        <a href="shop.html?category=led-mahamantra" class="dropdown-item">LED Lit Mahamantra (1)</a>
+                        <a href="shop.html?category=wall-hanging" class="dropdown-item">Sacred Wall Hangings (1)</a>
+                        <a href="shop.html?category=car-dashboard" class="dropdown-item">Car Dashboard Keepsakes (2)</a>
+                        <a href="shop.html?category=car-hanging" class="dropdown-item">Car Hanging Accessories (2)</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="collections.html" class="nav-link">Collections</a></li>
+                <li class="nav-item"><a href="index.html#story" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#footer" class="nav-link">Contact</a></li>
+                <li class="nav-item">
+                    <a href="https://bhaktilatabeej.com/" target="_blank" rel="noopener noreferrer" class="nav-courses-btn" title="Bhakti Lata Beej - Spiritual Courses & Wisdom">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Spiritual Courses</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square nav-external-arrow"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-icon-btn" id="wishlistToggleBtn" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="nav-badge-count" id="wishlistCount">0</span>
+                </button>
+                <button class="nav-icon-btn" id="cartToggleBtn" title="Inquiries & Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="nav-badge-count" id="cartCount">0</span>
+                </button>
+                <button class="mobile-toggle" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOP PAGE HERO HEADER -->
+    <section class="shop-page-header">
+        <div class="container">
+            <span class="section-title-tag">The Sacred Catalog</span>
+            <h1 class="shop-page-title">Spiritual <span class="italic-serif">Creations</span></h1>
+            <p class="shop-page-subtitle">Browse all 40 handcrafted devotional creations across 7 sacred categories. Devotedly crafted for conscious spiritual homes.</p>
+        </div>
+    </section>
+
+    <!-- SHOPPING CONTAINER -->
+    <main class="shop-container">
+        <div class="container">
+            <!-- Filter & Search Toolbar -->
+            <div class="shop-filter-bar">
+                <div class="shop-category-pills" id="shopCategoryFilters">
+                    <button class="shop-pill-btn active" data-category="all">All Creations (<span id="shopCountAll">40</span>)</button>
+                    <button class="shop-pill-btn" data-category="bandhanwar">Bandhanwars (<span id="shopCountBandhanwar">8</span>)</button>
+                    <button class="shop-pill-btn" data-category="fridge-magnet">Fridge Magnets (<span id="shopCountFridgeMagnet">14</span>)</button>
+                    <button class="shop-pill-btn" data-category="tulsi-dress">Tulsi Maharani Dress (<span id="shopCountTulsiDress">12</span>)</button>
+                    <button class="shop-pill-btn" data-category="led-mahamantra">LED Mahamantra (<span id="shopCountLedMahamantra">1</span>)</button>
+                    <button class="shop-pill-btn" data-category="wall-hanging">Wall Hangings (<span id="shopCountWallHanging">1</span>)</button>
+                    <button class="shop-pill-btn" data-category="car-dashboard">Car Dashboard (<span id="shopCountCarDashboard">2</span>)</button>
+                    <button class="shop-pill-btn" data-category="car-hanging">Car Hanging (<span id="shopCountCarHanging">2</span>)</button>
+
+                    <select class="shop-sort-select" id="shopSortSelect" aria-label="Sort products">
+                        <option value="featured">Featured Collection</option>
+                        <option value="name-asc">Alphabetical (A - Z)</option>
+                        <option value="name-desc">Alphabetical (Z - A)</option>
+                        <option value="price-asc">Price (Low to High)</option>
+                        <option value="price-desc">Price (High to Low)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="shop-products-grid" id="shopProductsGrid">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Empty Results State -->
+            <div class="empty-state" id="shopEmptyState" style="display: none; text-align: center; padding: 60px 20px;">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; color: var(--gold-primary); margin-bottom: 12px;"></i>
+                <h3>No spiritual items match your filter</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Try searching for a different keyword or view all products.</p>
+                <button class="btn btn-dark" id="shopResetBtn">View All Products</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Rachayati <span class="gold-text">Designs</span></h3>
+                    <p>Blending tradition & modernity ✨<br>Spiritual products, family games, decor & gifts to bring joy, creativity, and connection into everyday<br>life&nbsp;🌿</p>
+                    <div class="footer-social-links">
+                        <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!" target="_blank" class="footer-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="footer-social-btn" title="Instagram (@rachayati.designs)"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="mailto:rachayati.designs@gmail.com" class="footer-social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Collections & Categories</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="shop.html?category=all">All 40 Products</a></li>
+                        <li><a href="shop.html?category=bandhanwar">Sacred Bandhanwars</a></li>
+                        <li><a href="shop.html?category=fridge-magnet">Devotional Fridge Magnets</a></li>
+                        <li><a href="shop.html?category=tulsi-dress">Tulsi Maharani Dresses</a></li>
+                        <li><a href="shop.html?category=led-mahamantra">LED Lit Mahamantra</a></li>
+                        <li><a href="shop.html?category=wall-hanging">Sacred Wall Hangings</a></li>
+                        <li><a href="shop.html?category=car-dashboard">Car Dashboard & Hanging</a></li>
+                        <li><a href="https://bhaktilatabeej.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); font-weight: 600;"><i class="fa-solid fa-graduation-cap"></i> Spiritual Courses (Bhakti Lata Beej)</a></li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.bhaktilatabeej.japasanga&pli=1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> Japa Sanga App</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Gratitude</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;">
+                        Blessed by & serving sacred temples:
+                    </p>
+                    <ul class="footer-links-list gratitude-temples-list">
+                        <li>ISKCON Aravade</li>
+                        <li>ISKCON Chowpatty</li>
+                        <li>ISKCON Dwarka</li>
+                        <li>ISKCON Gurgaon</li>
+                        <li>ISKCON Kolhapur</li>
+                        <li>ISKCON Nagpur</li>
+                        <li>ISKCON Navi Mumbai</li>
+                        <li>ISKCON Noida</li>
+                        <li>ISKCON Prayagraj</li>
+                        <li>ISKCON Pune</li>
+                        <li>ISKCON Rishikesh</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Direct Inquiries</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 10px;">
+                        <i class="fa-solid fa-location-dot gold-text"></i> Pan-India Express Delivery
+                    </p>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 10px;">
+                        <i class="fa-brands fa-whatsapp wa-green-text"></i> Instant Order Assistance
+                    </p>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">
+                        <i class="fa-solid fa-globe gold-text"></i> Only Bulk order for International
+                    </p>
+                    <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!%20I%20would%20like%20to%20order%20products." target="_blank" class="btn btn-whatsapp" style="font-size: 0.8rem; padding: 8px 18px; width: fit-content;">
+                        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Rachayati Designs. All rights reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart gold-text"></i> for conscious spiritual living</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL & GALLERY LIGHTBOX MODAL (Shared) -->
+    <div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-wrapper">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-grid">
+                <div class="modal-gallery-side">
+                    <div class="modal-main-display">
+                        <img src="" alt="" id="modalMainImage" class="modal-main-img">
+                        <video src="" controls autoplay muted loop id="modalMainVideo" class="modal-main-video" style="display: none;"></video>
+                        <button class="modal-nav-btn prev-btn" id="modalPrevMedia"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="modal-nav-btn next-btn" id="modalNextMedia"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="modal-thumbs" id="modalThumbnailsStrip">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="modal-info-side">
+                    <span class="modal-category-label" id="modalCategoryTag">Spiritual Collection</span>
+                    <h2 class="modal-product-title" id="modalTitle">Product Title</h2>
+                    
+                    <div class="modal-price-row">
+                        <span class="modal-price-val">₹<span id="modalPrice">199</span></span>
+                        <span class="modal-mrp-val">₹<span id="modalMrp">299</span></span>
+                        <span class="modal-discount-tag">Handcrafted</span>
+                    </div>
+
+                    <!-- Amazon-Style Design/Variant Switcher -->
+                    <div class="modal-variants-section" id="modalVariantsSection">
+                        <!-- Populated dynamically by JS for category designs -->
+                    </div>
+
+                    <p class="modal-desc" id="modalDescription">
+                        Detailed spiritual item description...
+                    </p>
+
+                    <div class="modal-feature-list">
+                        <div class="modal-feature-item">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Ultra-gloss acrylic waterproof protective coat</span>
+                        </div>
+                        <div class="modal-feature-item">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Sturdy magnet mount for refrigerators and metal altars</span>
+                        </div>
+                        <div class="modal-feature-item">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Fade-proof archival vivid devotional colors</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions-box">
+                        <button class="btn btn-dark flex-1" id="modalAddToCartBtn" style="flex: 1; padding: 14px 28px; font-weight: 700;">
+                            <i class="fa-solid fa-cart-shopping"></i> Add To Cart
+                        </button>
+                        <button class="clean-card-btn" id="modalWishlistBtn" title="Wishlist" style="width: 48px; height: 48px;">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHLIST DRAWER -->
+    <div class="drawer-backdrop" id="wishlistDrawer" aria-hidden="true">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h3>Saved Favorites (<span id="drawerWishlistCount">0</span>)</h3>
+                <button class="drawer-close" id="wishlistCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="drawer-body" id="wishlistItemsContainer">
+                <!-- JS populated -->
+            </div>
+            <div class="drawer-footer" id="wishlistFooter" style="display: none;">
+                <button class="btn btn-dark" style="width: 100%;" id="moveWishlistToCartBtn">
+                    Move All to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART / INQUIRY DRAWER -->
+    <div class="drawer-backdrop" id="cartDrawer" aria-hidden="true">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h3>Shopping Cart (<span id="drawerCartCount">0</span>)</h3>
+                <button class="drawer-close" id="cartCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="drawer-body" id="cartItemsContainer">
+                <!-- JS populated -->
+            </div>
+            <div class="drawer-footer" id="cartFooter" style="display: none;">
+                <div class="drawer-total-row">
+                    <span>Estimated Total:</span>
+                    <span style="color: var(--gold-primary);">₹<span id="cartTotalPrice">0</span></span>
+                </div>
+                <button class="btn btn-whatsapp" style="width: 100%;" id="whatsappCheckoutBtn">
+                    <i class="fa-brands fa-whatsapp"></i> Send Order on WhatsApp
+                </button>
+                <a href="shop.html" class="btn btn-outline" style="width: 100%; font-size: 0.84rem; text-align: center;" onclick="closeCartDrawer()">
+                    <i class="fa-solid fa-plus gold-text"></i> Add More Products from Store
+                </a>
+                <button class="btn-clear-cart" id="clearCartBtn">
+                    Clear List
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-box" id="toastNotification">
+        <i class="fa-solid fa-circle-check gold-text"></i>
+        <span id="toastMessage">Item updated!</span>
+    </div>
+
+    <!-- FLOATING WHATSAPP HOTLINE BUTTON -->
+    <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!%20I%20have%20an%20inquiry%20regarding%20spiritual%20products." target="_blank" class="floating-whatsapp-btn" title="Chat on WhatsApp" aria-label="WhatsApp Support">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="wa-tooltip">Order & Inquire on WhatsApp</span>
+    </a>
+
+    <!-- Script -->
+    <script src="app.js?v=7"></script>
+</body>
+</html>
