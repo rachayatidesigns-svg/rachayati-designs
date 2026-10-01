@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body class="product-page-body">
 
@@ -103,6 +103,9 @@
                     <div class="product-page-main-display" id="pageMainDisplay">
                         <img src="" alt="Product view" id="pageMainImage" class="product-page-main-img">
                         <span class="product-page-media-badge" id="pageMediaBadge">1 / 1</span>
+                        <button type="button" class="product-page-zoom-trigger" id="pageZoomTriggerBtn" title="Click to open full screen zoom" aria-label="Zoom image">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </button>
                         <button class="product-page-nav-arrow prev" id="pagePrevMedia" title="Previous photo" aria-label="Previous image">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
@@ -314,6 +317,47 @@
         </div>
     </footer>
 
+    <!-- FULLSCREEN PRODUCT IMAGE ZOOM LIGHTBOX (AMAZON STYLE) -->
+    <div class="product-zoom-lightbox" id="productZoomLightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="zoom-lightbox-backdrop" id="zoomLightboxBackdrop"></div>
+        <div class="zoom-lightbox-dialog">
+            <!-- Header Toolbar -->
+            <div class="zoom-lightbox-header">
+                <div class="zoom-lightbox-title-box">
+                    <span class="zoom-lightbox-product-name" id="zoomProductName">Product Name</span>
+                    <span class="zoom-lightbox-counter" id="zoomCounter">1 / 1</span>
+                </div>
+                <div class="zoom-lightbox-toolbar">
+                    <button type="button" class="zoom-tool-btn" id="zoomInBtn" title="Zoom In (+)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                    <button type="button" class="zoom-tool-btn" id="zoomOutBtn" title="Zoom Out (-)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                    <button type="button" class="zoom-tool-btn" id="zoomResetBtn" title="Reset Zoom (100%)"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button type="button" class="zoom-tool-btn zoom-close-btn" id="zoomCloseBtn" title="Close (Esc)"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <!-- Viewport & Movable Zoom Canvas -->
+            <div class="zoom-lightbox-viewport" id="zoomViewport">
+                <div class="zoom-lightbox-canvas" id="zoomCanvas">
+                    <img src="" alt="Full size view" class="zoom-lightbox-img" id="zoomLightboxImg">
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button type="button" class="zoom-nav-arrow prev" id="zoomPrevBtn" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+                <button type="button" class="zoom-nav-arrow next" id="zoomNextBtn" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Footer Thumbnail Strip -->
+            <div class="zoom-lightbox-footer">
+                <div class="zoom-thumbs-strip" id="zoomThumbsStrip">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="zoom-lightbox-hint">
+                    <i class="fa-solid fa-hand-pointer"></i> Double-click / tap to zoom • Drag to pan • Arrow keys or swipe to change
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- WISHLIST DRAWER -->
     <div class="drawer-backdrop" id="wishlistDrawer" aria-hidden="true">
         <div class="drawer-panel">
@@ -370,6 +414,6 @@
     </a>
 
     <!-- Application Script -->
-    <script src="app.js?v=8"></script>
+    <script src="app.js?v=9"></script>
 </body>
 </html>

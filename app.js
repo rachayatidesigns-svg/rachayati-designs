@@ -1417,6 +1417,7 @@ function initProductDetailPage() {
     
     // 3. Attach gallery arrows and quantity listeners
     setupPageInteractiveControls();
+    initProductZoomLightboxEvents();
 }
 
 function renderPageProductData(product) {
@@ -1856,11 +1857,59 @@ function setupPageInteractiveControls() {
         displayWrap.addEventListener('pointercancel', () => {
             isPointerDown = false;
         });
+
+        // Desktop Amazon-Style Hover Zoom on Main Product Image
+        const mainImg = document.getElementById('pageMainImage');
+        if (mainImg) {
+            let isHoverZooming = false;
+            
+            displayWrap.addEventListener('mouseenter', () => {
+                if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                    isHoverZooming = true;
+                    displayWrap.classList.add('is-hover-zooming');
+                    mainImg.style.transition = 'transform 0.08s ease-out';
+                    mainImg.style.transform = 'scale(2.2)';
+                }
+            });
+            
+            displayWrap.addEventListener('mousemove', (e) => {
+                if (!isHoverZooming) return;
+                const rect = displayWrap.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                const clampedX = Math.max(0, Math.min(100, x));
+                const clampedY = Math.max(0, Math.min(100, y));
+                mainImg.style.transformOrigin = `${clampedX}% ${clampedY}%`;
+            });
+            
+            displayWrap.addEventListener('mouseleave', () => {
+                if (!isHoverZooming) return;
+                isHoverZooming = false;
+                displayWrap.classList.remove('is-hover-zooming');
+                mainImg.style.transition = 'transform 0.22s ease-out, transform-origin 0.22s ease-out';
+                mainImg.style.transform = 'scale(1)';
+                mainImg.style.transformOrigin = 'center center';
+            });
+
+            // Click photo to open full-screen zoom lightbox (like Amazon)
+            displayWrap.addEventListener('click', (e) => {
+                if (e.target.closest('.product-page-nav-arrow')) return;
+                openProductZoomLightbox(state.pageMediaIndex);
+            });
+        }
+    }
+
+    const zoomTriggerBtn = document.getElementById('pageZoomTriggerBtn');
+    if (zoomTriggerBtn) {
+        zoomTriggerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openProductZoomLightbox(state.pageMediaIndex);
+        });
     }
     
-    // Keyboard arrow keys for desktop
+    // Keyboard arrow keys for desktop gallery
     document.addEventListener('keydown', (e) => {
-        if (!document.getElementById('productDetailPage')) return;
+        if (!document.getElementById('productDetailPage') || zoomState.isOpen) return;
         if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
         if (e.key === 'ArrowLeft') {
             switchPageGalleryMedia(state.pageMediaIndex - 1, -1);
@@ -1906,6 +1955,270 @@ function setupPageInteractiveControls() {
             }
         });
     }
+}
+
+// ==========================================================================
+// AMAZON-STYLE FULLSCREEN PRODUCT IMAGE ZOOM LIGHTBOX
+// ==========================================================================
+const zoomState = {
+    isOpen: false,
+    level: 1.0,
+    panX: 0,
+    panY: 0,
+    isDragging: false,
+    dragStartX: 0,
+    dragStartY: 0
+};
+
+function openProductZoomLightbox(mediaIndex = 0) {
+    const lightbox = document.getElementById('productZoomLightbox');
+    const product = state.pageProduct;
+    if (!lightbox || !product) return;
+
+    zoomState.isOpen = true;
+    zoomState.level = 1.0;
+    zoomState.panX = 0;
+    zoomState.panY = 0;
+
+    // Lock page background scroll
+    document.body.style.overflow = 'hidden';
+
+    // Update product name in header
+    const titleEl = document.getElementById('zoomProductName');
+    if (titleEl) titleEl.textContent = product.name;
+
+    // Render lightbox media & thumbnails
+    switchZoomLightboxMedia(mediaIndex !== undefined ? mediaIndex : state.pageMediaIndex);
+
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+}
+
+function closeProductZoomLightbox() {
+    const lightbox = document.getElementById('productZoomLightbox');
+    if (!lightbox) return;
+
+    zoomState.isOpen = false;
+    zoomReset();
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+
+    // Restore page scroll
+    document.body.style.overflow = '';
+}
+
+function switchZoomLightboxMedia(index, direction = 0) {
+    const product = state.pageProduct;
+    if (!product || !product.images || product.images.length === 0) return;
+
+    const total = product.images.length;
+    state.pageMediaIndex = (index + total) % total;
+
+    // Reset zoom level on image switch
+    zoomReset();
+
+    const zoomImg = document.getElementById('zoomLightboxImg');
+    const counterEl = document.getElementById('zoomCounter');
+    const thumbsStrip = document.getElementById('zoomThumbsStrip');
+
+    if (zoomImg) {
+        zoomImg.src = getProductImagePath(product, state.pageMediaIndex);
+        zoomImg.alt = `${product.name} - Photo ${state.pageMediaIndex + 1}`;
+    }
+
+    if (counterEl) {
+        counterEl.textContent = `${state.pageMediaIndex + 1} / ${total}`;
+    }
+
+    // Render / update thumbs in lightbox
+    if (thumbsStrip) {
+        thumbsStrip.innerHTML = product.images.map((img, idx) => {
+            const isActive = idx === state.pageMediaIndex;
+            const encodedSrc = encodeURI(img);
+            return `
+                <div class="zoom-thumb-item ${isActive ? 'active' : ''}" 
+                     onclick="switchZoomLightboxMedia(${idx})" 
+                     title="View photo ${idx + 1}">
+                    <img src="${encodedSrc}" alt="${product.name} thumb ${idx + 1}" onerror="this.src='Logo.jpg'">
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Sync the main product page gallery as well
+    const mainImg = document.getElementById('pageMainImage');
+    if (mainImg) {
+        mainImg.src = getProductImagePath(product, state.pageMediaIndex);
+        mainImg.alt = `${product.name} - View ${state.pageMediaIndex + 1}`;
+    }
+    const pageBadge = document.getElementById('pageMediaBadge');
+    if (pageBadge) pageBadge.textContent = `${state.pageMediaIndex + 1} / ${total}`;
+    document.querySelectorAll('.page-thumb-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === state.pageMediaIndex);
+    });
+}
+
+function applyLightboxTransform() {
+    const canvas = document.getElementById('zoomCanvas');
+    const viewport = document.getElementById('zoomViewport');
+    if (!canvas) return;
+
+    canvas.style.transform = `translate(${zoomState.panX}px, ${zoomState.panY}px) scale(${zoomState.level})`;
+    if (viewport) {
+        viewport.classList.toggle('is-zoomed', zoomState.level > 1);
+    }
+}
+
+function zoomIn() {
+    zoomState.level = Math.min(4.0, +(zoomState.level + 0.5).toFixed(1));
+    applyLightboxTransform();
+}
+
+function zoomOut() {
+    zoomState.level = Math.max(1.0, +(zoomState.level - 0.5).toFixed(1));
+    if (zoomState.level === 1.0) {
+        zoomState.panX = 0;
+        zoomState.panY = 0;
+    }
+    applyLightboxTransform();
+}
+
+function zoomReset() {
+    zoomState.level = 1.0;
+    zoomState.panX = 0;
+    zoomState.panY = 0;
+    applyLightboxTransform();
+}
+
+function initProductZoomLightboxEvents() {
+    const closeBtn = document.getElementById('zoomCloseBtn');
+    const backdrop = document.getElementById('zoomLightboxBackdrop');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const resetBtn = document.getElementById('zoomResetBtn');
+    const prevBtn = document.getElementById('zoomPrevBtn');
+    const nextBtn = document.getElementById('zoomNextBtn');
+    const viewport = document.getElementById('zoomViewport');
+
+    if (closeBtn) closeBtn.addEventListener('click', closeProductZoomLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeProductZoomLightbox);
+    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
+    if (resetBtn) resetBtn.addEventListener('click', zoomReset);
+    if (prevBtn) prevBtn.addEventListener('click', () => switchZoomLightboxMedia(state.pageMediaIndex - 1, -1));
+    if (nextBtn) nextBtn.addEventListener('click', () => switchZoomLightboxMedia(state.pageMediaIndex + 1, 1));
+
+    if (viewport) {
+        // Double-click/double-tap to toggle zoom (1x <-> 2.5x)
+        let lastTap = 0;
+        viewport.addEventListener('click', (e) => {
+            if (e.target.closest('.zoom-nav-arrow')) return;
+            const now = Date.now();
+            if (now - lastTap < 300) {
+                // Double tap
+                if (zoomState.level > 1) {
+                    zoomReset();
+                } else {
+                    zoomState.level = 2.5;
+                    const rect = viewport.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left - rect.width / 2;
+                    const clickY = e.clientY - rect.top - rect.height / 2;
+                    zoomState.panX = -clickX * 1.1;
+                    zoomState.panY = -clickY * 1.1;
+                    applyLightboxTransform();
+                }
+            }
+            lastTap = now;
+        });
+
+        // Mouse Wheel Zoom
+        viewport.addEventListener('wheel', (e) => {
+            if (!zoomState.isOpen) return;
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }, { passive: false });
+
+        // Pan/Drag in Lightbox (Pointer Events)
+        viewport.addEventListener('pointerdown', (e) => {
+            if (e.target.closest('.zoom-nav-arrow') || e.target.closest('.zoom-tool-btn')) return;
+            if (zoomState.level <= 1) return;
+            zoomState.isDragging = true;
+            zoomState.dragStartX = e.clientX - zoomState.panX;
+            zoomState.dragStartY = e.clientY - zoomState.panY;
+            viewport.setPointerCapture(e.pointerId);
+        });
+
+        viewport.addEventListener('pointermove', (e) => {
+            if (!zoomState.isDragging || zoomState.level <= 1) return;
+            zoomState.panX = e.clientX - zoomState.dragStartX;
+            zoomState.panY = e.clientY - zoomState.dragStartY;
+            applyLightboxTransform();
+        });
+
+        viewport.addEventListener('pointerup', () => {
+            zoomState.isDragging = false;
+        });
+        viewport.addEventListener('pointercancel', () => {
+            zoomState.isDragging = false;
+        });
+
+        // Touch Swipe Navigation when NOT zoomed in (level === 1)
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        let touchStartTime = 0;
+
+        viewport.addEventListener('touchstart', (e) => {
+            if (zoomState.level > 1 || !e.touches || e.touches.length === 0) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchEndX = touchStartX;
+            touchEndY = touchStartY;
+            touchStartTime = Date.now();
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', (e) => {
+            if (zoomState.level > 1 || !e.touches || e.touches.length === 0) return;
+            touchEndX = e.touches[0].clientX;
+            touchEndY = e.touches[0].clientY;
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', () => {
+            if (zoomState.level > 1) return;
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            const elapsed = Date.now() - touchStartTime;
+
+            if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.2 && elapsed < 800) {
+                if (diffX < 0) {
+                    switchZoomLightboxMedia(state.pageMediaIndex + 1, 1);
+                } else {
+                    switchZoomLightboxMedia(state.pageMediaIndex - 1, -1);
+                }
+            }
+        });
+    }
+
+    // Global Keydown (Escape closes lightbox, Arrows navigate, +/- zoom)
+    document.addEventListener('keydown', (e) => {
+        if (!zoomState.isOpen) return;
+        if (e.key === 'Escape') {
+            closeProductZoomLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            switchZoomLightboxMedia(state.pageMediaIndex - 1, -1);
+        } else if (e.key === 'ArrowRight') {
+            switchZoomLightboxMedia(state.pageMediaIndex + 1, 1);
+        } else if (e.key === '+' || e.key === '=') {
+            zoomIn();
+        } else if (e.key === '-') {
+            zoomOut();
+        }
+    });
 }
 
 
@@ -2204,6 +2517,12 @@ window.removeFromCart = removeFromCart;
 window.updateCartQuantity = updateCartQuantity;
 window.addToCart = addToCart;
 window.closeCartDrawer = closeCartDrawer;
+window.openProductZoomLightbox = openProductZoomLightbox;
+window.closeProductZoomLightbox = closeProductZoomLightbox;
+window.switchZoomLightboxMedia = switchZoomLightboxMedia;
+window.zoomIn = zoomIn;
+window.zoomOut = zoomOut;
+window.zoomReset = zoomReset;
 
 // ==========================================
 // 10. EVENT LISTENERS
