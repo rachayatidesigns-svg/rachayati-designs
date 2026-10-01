@@ -1680,6 +1680,19 @@ function renderPageGallery() {
     mainImg.src = activeImgSrc;
     mainImg.alt = `${product.name} - View ${state.pageMediaIndex + 1}`;
     
+    // Update media count badge
+    const mediaBadge = document.getElementById('pageMediaBadge');
+    if (mediaBadge) {
+        mediaBadge.textContent = `${state.pageMediaIndex + 1} / ${images.length}`;
+        mediaBadge.style.display = images.length > 1 ? 'block' : 'none';
+    }
+    
+    // Update mobile swipe hint visibility
+    const swipeHint = document.querySelector('.product-page-swipe-hint');
+    if (swipeHint) {
+        swipeHint.style.display = images.length > 1 ? 'flex' : 'none';
+    }
+    
     // Render ordered thumbnail buttons (1, 2, 3...)
     thumbsStrip.innerHTML = images.map((img, idx) => {
         const isActive = idx === state.pageMediaIndex;
@@ -1688,32 +1701,64 @@ function renderPageGallery() {
         return `
             <button class="page-thumb-btn ${isActive ? 'active' : ''}" 
                     onclick="switchPageGalleryMedia(${idx})" 
-                    title="View Photo ${idx + 1}">
+                    title="View Photo ${idx + 1}"
+                    data-thumb-index="${idx}">
                 <img src="${encodedSrc}" alt="${product.name} thumb ${idx + 1}" onerror="this.src='Logo.jpg'">
             </button>
         `;
     }).join('');
 }
 
-function switchPageGalleryMedia(index) {
+function switchPageGalleryMedia(index, direction = 0) {
     const product = state.pageProduct;
     if (!product || !product.images || product.images.length === 0) return;
     
-    state.pageMediaIndex = (index + product.images.length) % product.images.length;
+    const total = product.images.length;
+    if (total <= 1) return;
+    
+    const prevIndex = state.pageMediaIndex;
+    state.pageMediaIndex = (index + total) % total;
+    
+    if (direction === 0) {
+        direction = (state.pageMediaIndex > prevIndex || (prevIndex === total - 1 && state.pageMediaIndex === 0)) ? 1 : -1;
+    }
     
     const mainImg = document.getElementById('pageMainImage');
     if (mainImg) {
-        mainImg.style.opacity = '0.3';
+        mainImg.style.transition = 'opacity 0.14s ease, transform 0.14s ease';
+        mainImg.style.opacity = '0.25';
+        mainImg.style.transform = `translateX(${direction > 0 ? '-14px' : '14px'}) scale(0.98)`;
+        
         setTimeout(() => {
             mainImg.src = getProductImagePath(product, state.pageMediaIndex);
-            mainImg.style.opacity = '1';
-        }, 120);
+            mainImg.alt = `${product.name} - View ${state.pageMediaIndex + 1}`;
+            mainImg.style.transform = `translateX(${direction > 0 ? '14px' : '-14px'}) scale(0.98)`;
+            
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    mainImg.style.transition = 'opacity 0.22s ease, transform 0.22s cubic-bezier(0.25, 1, 0.5, 1)';
+                    mainImg.style.opacity = '1';
+                    mainImg.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        }, 130);
     }
     
-    // Update active thumb
-    document.querySelectorAll('.page-thumb-btn').forEach((btn, idx) => {
-        btn.classList.toggle('active', idx === state.pageMediaIndex);
+    // Update active thumb and scroll into view
+    const allThumbs = document.querySelectorAll('.page-thumb-btn');
+    allThumbs.forEach((btn, idx) => {
+        const isActive = idx === state.pageMediaIndex;
+        btn.classList.toggle('active', isActive);
+        if (isActive) {
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
     });
+    
+    // Update counter badge
+    const mediaBadge = document.getElementById('pageMediaBadge');
+    if (mediaBadge) {
+        mediaBadge.textContent = `${state.pageMediaIndex + 1} / ${total}`;
+    }
 }
 
 function selectPageSize(sizeName) {
@@ -1733,8 +1778,96 @@ function selectPageSize(sizeName) {
 function setupPageInteractiveControls() {
     const prevBtn = document.getElementById('pagePrevMedia');
     const nextBtn = document.getElementById('pageNextMedia');
-    if (prevBtn) prevBtn.addEventListener('click', () => switchPageGalleryMedia(state.pageMediaIndex - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => switchPageGalleryMedia(state.pageMediaIndex + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => switchPageGalleryMedia(state.pageMediaIndex - 1, -1));
+    if (nextBtn) nextBtn.addEventListener('click', () => switchPageGalleryMedia(state.pageMediaIndex + 1, 1));
+    
+    // Touch Swipe on Image Gallery
+    const displayWrap = document.getElementById('pageMainDisplay') || document.querySelector('.product-page-main-display');
+    if (displayWrap) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        let touchStartTime = 0;
+        let isTouching = false;
+        
+        displayWrap.addEventListener('touchstart', (e) => {
+            if (!e.touches || e.touches.length === 0) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchEndX = touchStartX;
+            touchEndY = touchStartY;
+            touchStartTime = Date.now();
+            isTouching = true;
+        }, { passive: true });
+        
+        displayWrap.addEventListener('touchmove', (e) => {
+            if (!isTouching || !e.touches || e.touches.length === 0) return;
+            touchEndX = e.touches[0].clientX;
+            touchEndY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        displayWrap.addEventListener('touchend', () => {
+            if (!isTouching) return;
+            isTouching = false;
+            
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            const elapsed = Date.now() - touchStartTime;
+            
+            // Require min 35px horizontal travel, dominantly horizontal, under 800ms
+            if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY) * 1.15 && elapsed < 800) {
+                if (diffX < 0) {
+                    // Swiped Left -> View Next Image
+                    switchPageGalleryMedia(state.pageMediaIndex + 1, 1);
+                } else {
+                    // Swiped Right -> View Previous Image
+                    switchPageGalleryMedia(state.pageMediaIndex - 1, -1);
+                }
+            }
+        });
+        
+        // Pointer / Mouse Drag Swipe
+        let pointerStartX = 0;
+        let pointerStartY = 0;
+        let isPointerDown = false;
+        
+        displayWrap.addEventListener('pointerdown', (e) => {
+            if (e.target.closest('.product-page-nav-arrow')) return;
+            pointerStartX = e.clientX;
+            pointerStartY = e.clientY;
+            isPointerDown = true;
+        });
+        
+        displayWrap.addEventListener('pointerup', (e) => {
+            if (!isPointerDown) return;
+            isPointerDown = false;
+            const diffX = e.clientX - pointerStartX;
+            const diffY = e.clientY - pointerStartY;
+            if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.2) {
+                if (diffX < 0) {
+                    switchPageGalleryMedia(state.pageMediaIndex + 1, 1);
+                } else {
+                    switchPageGalleryMedia(state.pageMediaIndex - 1, -1);
+                }
+            }
+        });
+        
+        displayWrap.addEventListener('pointercancel', () => {
+            isPointerDown = false;
+        });
+    }
+    
+    // Keyboard arrow keys for desktop
+    document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('productDetailPage')) return;
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+        if (e.key === 'ArrowLeft') {
+            switchPageGalleryMedia(state.pageMediaIndex - 1, -1);
+        } else if (e.key === 'ArrowRight') {
+            switchPageGalleryMedia(state.pageMediaIndex + 1, 1);
+        }
+    });
     
     const minusBtn = document.getElementById('qtyMinusBtn');
     const plusBtn = document.getElementById('qtyPlusBtn');

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=8">
+    <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body class="product-page-body">
 
@@ -100,14 +100,20 @@
                 
                 <!-- LEFT COLUMN: Sticky Media Gallery -->
                 <div class="product-gallery-sticky">
-                    <div class="product-page-main-display">
+                    <div class="product-page-main-display" id="pageMainDisplay">
                         <img src="" alt="Product view" id="pageMainImage" class="product-page-main-img">
+                        <span class="product-page-media-badge" id="pageMediaBadge">1 / 1</span>
                         <button class="product-page-nav-arrow prev" id="pagePrevMedia" title="Previous photo" aria-label="Previous image">
                             <i class="fa-solid fa-chevron-left"></i>
                         </button>
                         <button class="product-page-nav-arrow next" id="pageNextMedia" title="Next photo" aria-label="Next image">
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
+                    </div>
+
+                    <div class="product-page-swipe-hint">
+                        <i class="fa-solid fa-arrows-left-right"></i>
+                        <span>Swipe or tap arrows to view photos</span>
                     </div>
 
                     <!-- Ordered Photo Thumbnails Strip (1.png, 2.png, 3.png...) -->
@@ -364,6 +370,6 @@
     </a>
 
     <!-- Application Script -->
-    <script src="app.js?v=7"></script>
+    <script src="app.js?v=8"></script>
 </body>
 </html>

@@ -3308,17 +3308,24 @@ h1, h2, h3, h4, h5, h6 {
     align-items: start;
 }
 
-@media (max-width: 1024px) {
-    .product-layout-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+@media (min-width: 1025px) {
+    /* Left Gallery Sticky - strictly desktop only */
+    .product-gallery-sticky {
+        position: sticky;
+        top: 90px;
     }
 }
 
-/* Left Gallery Sticky */
-.product-gallery-sticky {
-    position: sticky;
-    top: 90px;
+@media (max-width: 1024px) {
+    .product-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .product-gallery-sticky {
+        position: static !important;
+        top: auto !important;
+        width: 100%;
+    }
 }
 
 .product-page-main-display {
@@ -3334,6 +3341,14 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     overflow: hidden;
     margin-bottom: 14px;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+}
+
+.product-page-main-display:active {
+    cursor: grabbing;
 }
 
 .product-page-main-img {
@@ -3341,7 +3356,31 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     object-fit: contain;
     padding: 16px;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1), transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+/* Media Index Badge (e.g. 1 / 5) */
+.product-page-media-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(35, 31, 29, 0.72);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none;
+    z-index: 6;
+}
+
+/* Subtle swipe hint pill on mobile */
+.product-page-swipe-hint {
+    display: none;
 }
 
 .product-page-nav-arrow {
@@ -3862,6 +3901,257 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-wishlist-toggle-btn.active i {
     color: #e53935;
+}
+
+/* ==========================================================================
+   PRODUCT DETAILS PAGE MOBILE RESPONSIVENESS (product.html)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .product-page-main {
+        padding: 12px 0 50px;
+    }
+    .product-breadcrumbs {
+        font-size: 0.76rem;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    .product-page-main-display {
+        border-radius: 12px;
+        margin-bottom: 8px;
+    }
+    .product-page-main-img {
+        padding: 10px;
+    }
+    .product-page-nav-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+    .product-page-nav-arrow.prev { left: 8px; }
+    .product-page-nav-arrow.next { right: 8px; }
+    
+    .product-page-swipe-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+        margin-bottom: 10px;
+    }
+    .product-page-swipe-hint i {
+        font-size: 0.68rem;
+        color: var(--gold-primary);
+    }
+    
+    .product-page-thumbs-strip {
+        gap: 8px;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .page-thumb-btn {
+        width: 58px;
+        height: 58px;
+        border-radius: 6px;
+        padding: 3px;
+    }
+    
+    /* Authentic Assurance Trust Cards on Mobile */
+    .product-page-trust-cards {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 14px;
+    }
+    .trust-mini-item {
+        padding: 8px 12px;
+        gap: 10px;
+        border-radius: 8px;
+    }
+    .trust-mini-item i {
+        font-size: 1.15rem;
+    }
+    .trust-mini-item strong {
+        font-size: 0.78rem;
+    }
+    .trust-mini-item small {
+        font-size: 0.7rem;
+    }
+    
+    /* Right Product Info Column on Mobile */
+    .product-page-info {
+        padding: 18px 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
+        margin-top: 0;
+    }
+    .product-page-header-row {
+        margin-bottom: 8px;
+    }
+    .product-page-title {
+        font-size: 1.5rem;
+        line-height: 1.25;
+        margin-bottom: 10px;
+    }
+    .product-page-price-box {
+        gap: 8px;
+        margin-bottom: 4px;
+        flex-wrap: wrap;
+    }
+    .price-currency {
+        font-size: 1.2rem;
+    }
+    .page-price-main {
+        font-size: 1.85rem;
+    }
+    .page-price-discount {
+        font-size: 0.76rem;
+        padding: 3px 8px;
+    }
+    .tax-note {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        font-size: 0.76rem;
+    }
+    
+    /* Amazon-style variants grid on Mobile: 3 columns */
+    .page-variants-section {
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+    }
+    .page-variants-header {
+        margin-bottom: 10px;
+    }
+    .page-variants-grid {
+        gap: 8px;
+    }
+    .amazon-page-variant-card {
+        flex: 0 0 calc(33.333% - 6px);
+        max-width: calc(33.333% - 6px);
+        width: calc(33.333% - 6px);
+        height: auto;
+        min-height: 110px;
+        padding: 6px 4px;
+        border-radius: 6px;
+    }
+    .page-variant-thumb-wrap {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 4px;
+    }
+    .page-variant-title {
+        font-size: 0.66rem;
+        line-height: 1.15;
+    }
+    .page-variant-price {
+        font-size: 0.74rem;
+    }
+    
+    /* Size Selector */
+    .page-size-selector {
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+    .size-pills-wrap {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .size-pill-btn {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
+    
+    /* Dimensions highlight */
+    .product-dim-highlight {
+        padding: 10px 12px;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    .dim-icon {
+        font-size: 1.15rem;
+    }
+    .dim-label {
+        font-size: 0.68rem;
+    }
+    .dim-value {
+        font-size: 0.86rem;
+    }
+    
+    /* Description */
+    .product-page-desc-block {
+        margin-bottom: 18px;
+    }
+    .desc-heading {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+    .product-page-desc {
+        font-size: 0.88rem;
+        line-height: 1.55;
+    }
+    
+    /* Actions Box: Qty, Add to Cart, Wishlist, WhatsApp */
+    .product-page-actions-box {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+        padding-top: 14px;
+    }
+    .page-qty-picker {
+        grid-column: 1;
+        grid-row: 1;
+        height: 44px;
+    }
+    .page-qty-picker button {
+        width: 34px;
+    }
+    .page-qty-picker span {
+        width: 28px;
+        font-size: 0.9rem;
+    }
+    .page-add-cart-btn {
+        grid-column: 2;
+        grid-row: 1;
+        height: 44px;
+        padding: 0 12px;
+        font-size: 0.88rem;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+    .page-wishlist-toggle-btn {
+        grid-column: 3;
+        grid-row: 1;
+        width: 44px;
+        height: 44px;
+    }
+    .page-wa-order-btn {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .amazon-page-variant-card {
+        flex: 0 0 calc(50% - 5px);
+        max-width: calc(50% - 5px);
+        width: calc(50% - 5px);
+    }
+    .page-add-cart-btn {
+        font-size: 0.82rem;
+        padding: 0 8px;
+    }
 }
 
 /* ==========================================================================
