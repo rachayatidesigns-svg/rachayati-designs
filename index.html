@@ -6,16 +6,82 @@
     <title>Rachayati Designs | Spiritual Products for a Soulful Life</title>
     <meta name="description" content="Thoughtfully crafted spiritual products, sacred mantra art, and devotional fridge magnets to elevate your spiritual journey and everyday living.">
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.rachayetidesigns.com/">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rachayetidesigns.com/">
+    <meta property="og:title" content="Rachayati Designs | Spiritual Products for a Soulful Life">
+    <meta property="og:description" content="Thoughtfully crafted spiritual products, sacred mantra art, and devotional fridge magnets to elevate your spiritual journey and everyday living.">
+    <meta property="og:image" content="https://www.rachayetidesigns.com/hero_banner.webp">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rachayati Designs | Spiritual Products for a Soulful Life">
+    <meta name="twitter:description" content="Thoughtfully crafted spiritual products, sacred mantra art, and devotional fridge magnets to elevate your spiritual journey and everyday living.">
+    <meta name="twitter:image" content="https://www.rachayetidesigns.com/hero_banner.webp">
+    
+    <!-- Preload Critical LCP Resource -->
+    <link rel="preload" as="image" href="hero_banner.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="hero_banner-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+
     <!-- Google Fonts: Cormorant Garamond, Marcellus, Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
     
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome Icons (Loaded Non-Blocking) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </noscript>
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=10">
+    <!-- Custom CSS (Minified for Production Performance) -->
+    <link rel="stylesheet" href="style.min.css?v=11">
+
+    <!-- Structured Data: Organization & WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.rachayetidesigns.com/#organization",
+          "name": "Rachayati Designs",
+          "url": "https://www.rachayetidesigns.com/",
+          "logo": "https://www.rachayetidesigns.com/Logo.webp",
+          "description": "Thoughtfully crafted spiritual products, sacred mantra art, and devotional keepsakes for conscious spiritual living.",
+          "telephone": "+919667748356",
+          "email": "rachayati.designs@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Dev Sai Sportshome, Sector 1",
+            "addressLocality": "Greater Noida West",
+            "addressRegion": "Uttar Pradesh",
+            "addressCountry": "IN"
+          },
+          "sameAs": [
+            "https://www.instagram.com/rachayati.designs/",
+            "https://wa.me/919667748356"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.rachayetidesigns.com/#website",
+          "url": "https://www.rachayetidesigns.com/",
+          "name": "Rachayati Designs",
+          "publisher": {
+            "@id": "https://www.rachayetidesigns.com/#organization"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
@@ -23,9 +89,9 @@
     <header class="main-header" id="header">
         <div class="nav-container">
             <!-- Brand Logo & Identity -->
-            <a href="index.html" class="brand-link">
+            <a href="index.html" class="brand-link" aria-label="Rachayati Designs Home">
                 <div class="brand-mandala-icon">
-                    <img src="Logo.jpg" alt="Rachayati Designs" onerror="this.innerHTML='<i class=\'fa-solid fa-om\'></i>'">
+                    <img src="Logo.webp" alt="" width="44" height="44" onerror="this.src='Logo.jpg'">
                 </div>
                 <div class="brand-text-block">
                     <span class="brand-main-title">Rachayati</span>
@@ -56,7 +122,7 @@
                 </li>
                 <li class="nav-item"><a href="collections.html" class="nav-link">Collections</a></li>
                 <li class="nav-item"><a href="#story" class="nav-link">About Us</a></li>
-                <li class="nav-item"><a href="#footer" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item">
                     <a href="https://bhaktilatabeej.com/" target="_blank" rel="noopener noreferrer" class="nav-courses-btn" title="Bhakti Lata Beej - Spiritual Courses & Wisdom">
                         <i class="fa-solid fa-graduation-cap"></i>
@@ -68,11 +134,11 @@
 
             <!-- Nav Actions (Wishlist, Cart) -->
             <div class="nav-actions">
-                <button class="nav-icon-btn" id="wishlistToggleBtn" title="Wishlist" aria-label="Wishlist">
+                <button class="nav-icon-btn" id="wishlistToggleBtn" title="Wishlist" aria-label="Wishlist: 0 items">
                     <i class="fa-regular fa-heart"></i>
                     <span class="nav-badge-count" id="wishlistCount">0</span>
                 </button>
-                <button class="nav-icon-btn" id="cartToggleBtn" title="Inquiries & Cart" aria-label="Cart">
+                <button class="nav-icon-btn" id="cartToggleBtn" title="Inquiries & Cart" aria-label="Cart: 0 items">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="nav-badge-count" id="cartCount">0</span>
                 </button>
@@ -83,325 +149,362 @@
         </div>
     </header>
 
-    <!-- HERO BANNER SECTION -->
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <span class="hero-tagline">Inspired by Tradition. Designed for Devotion.</span>
-                <h1 class="hero-title">
-                    Spiritual Products
-                    <span class="italic-serif">for a Soulful Life</span>
-                </h1>
-                <p class="hero-desc">
-                    Thoughtfully crafted products to elevate your spiritual journey and everyday living. Infuse peace and sacred grace into your home.
-                </p>
-                <div class="hero-action-group">
-                    <a href="shop.html" class="btn btn-dark">
-                        <span>Shop Collection</span>
+    <!-- MAIN CONTENT LANDMARK -->
+    <main id="main-content">
+
+        <!-- HERO BANNER SECTION -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-tagline">Inspired by Tradition. Designed for Devotion.</span>
+                    <h1 class="hero-title">
+                        Spiritual Products
+                        <span class="italic-serif">for a Soulful Life</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Thoughtfully crafted products to elevate your spiritual journey and everyday living. Infuse peace and sacred grace into your home.
+                    </p>
+                    <div class="hero-action-group">
+                        <a href="shop.html" class="btn btn-dark">
+                            <span>Shop Collection</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!%20I%20would%20like%20to%20know%20more%20about%20your%20spiritual%20products." target="_blank" class="btn btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Floating Devotion Badge -->
+                <div class="hero-floating-badge">
+                    <div class="badge-icon-wrap">
+                        <i class="fa-solid fa-hands-praying"></i>
+                    </div>
+                    <div class="badge-text">
+                        <div class="badge-title">Made with Devotion</div>
+                        <p>Premium quality products crafted with love and spiritual intention.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED COLLECTION PREVIEW SECTION -->
+        <section class="featured-section" id="featured">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-title-tag">Featured Collections</span>
+                    <h2 class="section-title">Sacred Handcrafted Collections</h2>
+                    <div class="mandala-ornament"><i class="fa-solid fa-sun"></i></div>
+                    <p class="section-sub-desc">Explore our sacred devotional collections & categories</p>
+                </div>
+
+                <!-- Collections Grid Preview -->
+                <div class="collections-grid" id="featuredProductsGrid">
+                    <!-- Populated dynamically via JS from actual collections -->
+                </div>
+
+                <div class="text-center" style="margin-top: 36px;">
+                    <a href="collections.html" class="btn btn-dark">
+                        <span>Explore All Sacred Collections</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!%20I%20would%20like%20to%20know%20more%20about%20your%20spiritual%20products." target="_blank" class="btn btn-whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
-                    </a>
                 </div>
             </div>
+        </section>
 
-            <!-- Floating Devotion Badge -->
-            <div class="hero-floating-badge">
-                <div class="badge-icon-wrap">
-                    <i class="fa-solid fa-hands-praying"></i>
-                </div>
-                <div class="badge-text">
-                    <h4>Made with Devotion</h4>
-                    <p>Premium quality products crafted with love and spiritual intention.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURED COLLECTION PREVIEW SECTION -->
-    <section class="featured-section" id="featured">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-title-tag">Featured Collections</span>
-                <div class="mandala-ornament"><i class="fa-solid fa-sun"></i></div>
-                <p class="section-sub-desc">Explore our sacred devotional collections & categories</p>
-            </div>
-
-            <!-- Collections Grid Preview -->
-            <div class="collections-grid" id="featuredProductsGrid">
-                <!-- Populated dynamically via JS from actual collections -->
-            </div>
-
-            <div class="text-center" style="margin-top: 36px;">
-                <a href="collections.html" class="btn btn-dark">
-                    <span>Explore All Sacred Collections</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRUST & VALUE PROPOSITIONS BAR -->
-    <section class="trust-bar">
-        <div class="container">
-            <div class="trust-grid">
-                <div class="trust-item">
-                    <div class="trust-icon"><i class="fa-solid fa-spa"></i></div>
-                    <div class="trust-info">
-                        <h4>Premium Quality</h4>
-                        <p>Finest materials & craftsmanship</p>
+        <!-- TRUST & VALUE PROPOSITIONS BAR -->
+        <section class="trust-bar">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-solid fa-spa"></i></div>
+                        <div class="trust-info">
+                            <div class="trust-title">Premium Quality</div>
+                            <p>Finest materials & craftsmanship</p>
+                        </div>
                     </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon"><i class="fa-solid fa-dharmachakra"></i></div>
-                    <div class="trust-info">
-                        <h4>Spiritual & Authentic</h4>
-                        <p>Rooted in tradition, made for you</p>
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-solid fa-dharmachakra"></i></div>
+                        <div class="trust-info">
+                            <div class="trust-title">Spiritual & Authentic</div>
+                            <p>Rooted in tradition, made for you</p>
+                        </div>
                     </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="trust-info">
-                        <h4>Secure Payments</h4>
-                        <p>100% safe & trusted</p>
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="trust-info">
+                            <div class="trust-title">Secure Payments</div>
+                            <p>100% safe & trusted</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SACRED PILLARS & STORY SECTION -->
-    <section class="story-section" id="story">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-title-tag">Our Sacred Calling</span>
-                <div class="mandala-ornament"><i class="fa-solid fa-om"></i></div>
-                <p class="section-sub-desc">Infusing transcendental beauty into everyday living</p>
+        <!-- SACRED PILLARS & STORY SECTION -->
+        <section class="story-section" id="story">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-title-tag">Our Sacred Calling</span>
+                    <h2 class="section-title">Transcendental Beauty For Everyday Living</h2>
+                    <div class="mandala-ornament"><i class="fa-solid fa-om"></i></div>
+                    <p class="section-sub-desc">Infusing transcendental beauty into everyday living</p>
+                </div>
+
+                <div class="story-pillars-grid">
+                    <div class="pillar-box">
+                        <div class="pillar-icon"><i class="fa-solid fa-heart"></i></div>
+                        <h3>Crafted with Care</h3>
+                        <p>Each product is made with love, mindfulness, and sacred devotional intent.</p>
+                    </div>
+                    <div class="pillar-box">
+                        <div class="pillar-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h3>Inspired by Scriptures</h3>
+                        <p>Rooted in timeless Vedic wisdom, auspicious symbols, and authentic mantras.</p>
+                    </div>
+                    <div class="pillar-box">
+                        <div class="pillar-icon"><i class="fa-solid fa-gift"></i></div>
+                        <h3>Perfect for Gifting</h3>
+                        <p>Thoughtful spiritual gifts for festivals, griha pravesh, weddings, and pujas.</p>
+                    </div>
+                    <div class="pillar-box">
+                        <div class="pillar-icon"><i class="fa-solid fa-hands-praying"></i></div>
+                        <h3>Connect with Divinity</h3>
+                        <p>Elevate your space, calm your mind, and stay reminded of the supreme divine.</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="story-pillars-grid">
-                <div class="pillar-box">
-                    <div class="pillar-icon"><i class="fa-solid fa-heart"></i></div>
-                    <h4>Crafted with Care</h4>
-                    <p>Each product is made with love, mindfulness, and sacred devotional intent.</p>
+        <!-- SACRED COMMUNITY & DEVOTIONAL ECOSYSTEM -->
+        <section class="community-ecosystem-section" id="community">
+            <div class="container">
+                <div class="community-header-wrap">
+                    <span class="section-title-tag">Our Devotional Ecosystem</span>
+                    <h2 class="section-title" style="font-size: 2.3rem; margin-bottom: 12px;">Join Our Sacred Community</h2>
+                    <p class="section-sub-desc">
+                        Connect with fellow devotees, deepen your spiritual roots through values-driven Vedic wisdom, and nurture your daily chanting practice anytime, anywhere.
+                    </p>
                 </div>
-                <div class="pillar-box">
-                    <div class="pillar-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <h4>Inspired by Scriptures</h4>
-                    <p>Rooted in timeless Vedic wisdom, auspicious symbols, and authentic mantras.</p>
-                </div>
-                <div class="pillar-box">
-                    <div class="pillar-icon"><i class="fa-solid fa-gift"></i></div>
-                    <h4>Perfect for Gifting</h4>
-                    <p>Thoughtful spiritual gifts for festivals, griha pravesh, weddings, and pujas.</p>
-                </div>
-                <div class="pillar-box">
-                    <div class="pillar-icon"><i class="fa-solid fa-hands-praying"></i></div>
-                    <h4>Connect with Divinity</h4>
-                    <p>Elevate your space, calm your mind, and stay reminded of the supreme divine.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- SACRED COMMUNITY & DEVOTIONAL ECOSYSTEM -->
-    <section class="community-ecosystem-section" id="community">
-        <div class="container">
-            <div class="community-header-wrap">
-                <span class="section-title-tag">Our Devotional Ecosystem</span>
-                <h2 class="section-title" style="font-size: 2.3rem; margin-bottom: 12px;">Join Our Sacred Community</h2>
-                <p class="section-sub-desc">
-                    Connect with fellow devotees, deepen your spiritual roots through values-driven Vedic wisdom, and nurture your daily chanting practice anytime, anywhere.
-                </p>
-            </div>
-
-            <!-- Sacred Initiatives Grid: Bhakti Lata Beej & Japa Sanga App -->
-            <div class="ecosystem-cards-grid">
-                
-                <!-- Card 1: Bhakti Lata Beej (Spiritual Courses) -->
-                <div class="ecosystem-card ecosystem-card--courses">
-                    <div>
-                        <div class="ecosystem-card-header">
-                            <div class="ecosystem-icon-badge courses-badge">
-                                <img src="bhaktilatabeej_logo.png" alt="Bhakti Lata Beej Logo" class="ecosystem-brand-logo" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-seedling\'></i>'">
+                <!-- Sacred Initiatives Grid: Bhakti Lata Beej & Japa Sanga App -->
+                <div class="ecosystem-cards-grid">
+                    
+                    <!-- Card 1: Bhakti Lata Beej (Spiritual Courses) -->
+                    <div class="ecosystem-card ecosystem-card--courses">
+                        <div>
+                            <div class="ecosystem-card-header">
+                                <div class="ecosystem-icon-badge courses-badge">
+                                    <img src="bhaktilatabeej_logo.webp" alt="Bhakti Lata Beej Logo" class="ecosystem-brand-logo" width="62" height="62" loading="lazy" onerror="this.src='bhaktilatabeej_logo.png'">
+                                </div>
+                                <div class="ecosystem-tag-group">
+                                    <span class="ecosystem-badge-pill">Spiritual Courses & Wisdom</span>
+                                    <span class="ecosystem-badge-sub">Values For Life Initiative</span>
+                                </div>
                             </div>
-                            <div class="ecosystem-tag-group">
-                                <span class="ecosystem-badge-pill">Spiritual Courses & Wisdom</span>
-                                <span class="ecosystem-badge-sub">Values For Life Initiative</span>
+
+                            <div class="ecosystem-card-body">
+                                <h3 class="ecosystem-title">Bhakti Lata Beej</h3>
+                                <div class="ecosystem-tagline">
+                                    <span>Plant the Seed of Wisdom.</span>
+                                    <span class="gold-text">Nurturing values for Life.</span>
+                                </div>
+                                <p class="ecosystem-desc">
+                                    A values-driven initiative leveraging modern technology, engaging content and timeless wisdom to help children, youth, families and communities cultivate character, moral values and spiritual growth for a purposeful life.
+                                </p>
+
+                                <div class="ecosystem-highlights">
+                                    <div class="eco-highlight-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Transformative spiritual courses grounded in Vedic wisdom</span>
+                                    </div>
+                                    <div class="eco-highlight-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Character & moral foundation for children and youth</span>
+                                    </div>
+                                    <div class="eco-highlight-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Empowering families & communities for purposeful living</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="ecosystem-card-body">
-                            <h3 class="ecosystem-title">Bhakti Lata Beej</h3>
-                            <div class="ecosystem-tagline">
-                                <span>Plant the Seed of Wisdom.</span>
-                                <span class="gold-text">Nurturing values for Life.</span>
-                            </div>
-                            <p class="ecosystem-desc">
-                                A values-driven initiative leveraging modern technology, engaging content and timeless wisdom to help children, youth, families and communities cultivate character, moral values and spiritual growth for a purposeful life.
-                            </p>
-
-                            <div class="ecosystem-highlights">
-                                <div class="eco-highlight-item">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                    <span>Transformative spiritual courses grounded in Vedic wisdom</span>
-                                </div>
-                                <div class="eco-highlight-item">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                    <span>Character & moral foundation for children and youth</span>
-                                </div>
-                                <div class="eco-highlight-item">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                    <span>Empowering families & communities for purposeful living</span>
-                                </div>
-                            </div>
+                        <div class="ecosystem-card-footer">
+                            <a href="https://bhaktilatabeej.com/" target="_blank" rel="noopener noreferrer" class="btn btn-gold ecosystem-action-btn">
+                                <span>Explore Bhakti Lata Beej Courses</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="ecosystem-card-footer">
-                        <a href="https://bhaktilatabeej.com/" target="_blank" rel="noopener noreferrer" class="btn btn-gold ecosystem-action-btn">
-                            <span>Explore Bhakti Lata Beej Courses</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <!-- Card 2: Japa Sanga App (Devotional Chanting Companion) -->
+                    <div class="ecosystem-card ecosystem-card--app">
+                        <div>
+                            <div class="ecosystem-card-header">
+                                <div class="ecosystem-icon-badge app-badge">
+                                    <img src="japasanga_logo.webp" alt="Japa Sanga Logo" class="ecosystem-brand-logo" width="62" height="62" loading="lazy" onerror="this.src='japasanga_logo.jpg'">
+                                </div>
+                                <div class="ecosystem-tag-group">
+                                    <span class="ecosystem-badge-pill">Mobile Devotional App</span>
+                                    <span class="ecosystem-badge-sub"><i class="fa-brands fa-android"></i> Available on Google Play</span>
+                                </div>
+                            </div>
+
+                            <div class="ecosystem-card-body">
+                                <h3 class="ecosystem-title">Japa Sanga App</h3>
+                                <div class="ecosystem-tagline">
+                                    <span>Everyday Transcendental Chanting Companion.</span>
+                                </div>
+                                <p class="ecosystem-desc">
+                                    A mobile app designed to support devotees in their daily chanting, making japa more focused, attentive, and accessible, anytime and anywhere.
+                                </p>
+
+                                <!-- The 4 key features explicitly requested -->
+                                <div class="japa-features-list">
+                                    <div class="japa-feature-pill">
+                                        <span class="japa-bullet">✦</span>
+                                        <span>Chant along with Srila Prabhupada</span>
+                                    </div>
+                                    <div class="japa-feature-pill">
+                                        <span class="japa-bullet">✦</span>
+                                        <span>Automatic bead counter & daily goal tracking</span>
+                                    </div>
+                                    <div class="japa-feature-pill">
+                                        <span class="japa-bullet">✦</span>
+                                        <span>Peaceful Deity Darshan themes</span>
+                                    </div>
+                                    <div class="japa-feature-pill">
+                                        <span class="japa-bullet">✦</span>
+                                        <span>Improves attention and quality of japa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ecosystem-card-footer">
+                            <a href="https://play.google.com/store/apps/details?id=com.bhaktilatabeej.japasanga&pli=1" target="_blank" rel="noopener noreferrer" class="btn btn-dark ecosystem-action-btn app-store-btn">
+                                <i class="fa-brands fa-google-play" style="color: #4cd964; font-size: 1.15rem;"></i>
+                                <span>Download Japa Sanga on Google Play</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Instagram Sacred Showcase -->
+                <div class="insta-community-block" id="instagram">
+                    <div class="insta-header-wrap">
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-handle-badge" rel="noopener noreferrer">
+                            <i class="fa-brands fa-instagram"></i> @rachayati.designs
+                        </a>
+                        <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 8px;">Sacred Keepsakes In Devotee Homes</h3>
+                        <p class="section-sub-desc">Follow our devotional journey, behind-the-scenes craft stories & sacred inspirations.</p>
+                    </div>
+
+                    <div class="insta-grid">
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card" rel="noopener noreferrer" aria-label="View Multicolor Mahamantra Bandhanwar on Instagram">
+                            <img src="Product%20Catalogue/Bandhanwar/Mahamantra%20Bandhanwar%20-%20Multicolor%20-%20English/1.webp" alt="Multicolor Mahamantra Bandhanwar" class="insta-post-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
+                            <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
+                        </a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card" rel="noopener noreferrer" aria-label="View Jai Jagannath Magnet on Instagram">
+                            <img src="Product%20Catalogue/Fridge%20Magnet/Jagannath%20Magnet/1.webp" alt="Jai Jagannath Magnet" class="insta-post-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
+                            <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
+                        </a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card" rel="noopener noreferrer" aria-label="View Tulsi Maharani Dress on Instagram">
+                            <img src="Product%20Catalogue/Tulsi%20Maharani%20Dress/Embossed%20Collection/Design%201/1.webp" alt="Tulsi Maharani Dress" class="insta-post-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
+                            <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
+                        </a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card" rel="noopener noreferrer" aria-label="View LED Lit Mahamantra on Instagram">
+                            <img src="Product%20Catalogue/Led%20Lit%20Mahamantra/1.webp" alt="LED Lit Mahamantra" class="insta-post-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
+                            <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
+                        </a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card" rel="noopener noreferrer" aria-label="View Peacock Magnet on Instagram">
+                            <img src="Product%20Catalogue/Fridge%20Magnet/Hare%20Krishna%20Magnet%20-%20Peacock/1.webp" alt="Peacock Magnet" class="insta-post-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
+                            <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
+                        </a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card" rel="noopener noreferrer" aria-label="View Jai Sri Ram Bandhanwar on Instagram">
+                            <img src="Product%20Catalogue/Bandhanwar/Jai%20Sri%20Ram%20Bandhanwar%20-%20Hindi/1.webp" alt="Jai Sri Ram Bandhanwar" class="insta-post-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
+                            <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
+                        </a>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: var(--border-light);">
+                            <i class="fa-brands fa-instagram" style="color: #E1306C;"></i> Follow @rachayati.designs on Instagram
                         </a>
                     </div>
                 </div>
-
-                <!-- Card 2: Japa Sanga App (Devotional Chanting Companion) -->
-                <div class="ecosystem-card ecosystem-card--app">
-                    <div>
-                        <div class="ecosystem-card-header">
-                            <div class="ecosystem-icon-badge app-badge">
-                                <img src="japasanga_logo.jpg" alt="Japa Sanga Logo" class="ecosystem-brand-logo" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-mobile-screen-button\'></i>'">
-                            </div>
-                            <div class="ecosystem-tag-group">
-                                <span class="ecosystem-badge-pill">Mobile Devotional App</span>
-                                <span class="ecosystem-badge-sub"><i class="fa-brands fa-android"></i> Available on Google Play</span>
-                            </div>
-                        </div>
-
-                        <div class="ecosystem-card-body">
-                            <h3 class="ecosystem-title">Japa Sanga App</h3>
-                            <div class="ecosystem-tagline">
-                                <span>Everyday Transcendental Chanting Companion.</span>
-                            </div>
-                            <p class="ecosystem-desc">
-                                A mobile app designed to support devotees in their daily chanting, making japa more focused, attentive, and accessible, anytime and anywhere.
-                            </p>
-
-                            <!-- The 4 key features explicitly requested -->
-                            <div class="japa-features-list">
-                                <div class="japa-feature-pill">
-                                    <span class="japa-bullet">✦</span>
-                                    <span>Chant along with Srila Prabhupada</span>
-                                </div>
-                                <div class="japa-feature-pill">
-                                    <span class="japa-bullet">✦</span>
-                                    <span>Automatic bead counter & daily goal tracking</span>
-                                </div>
-                                <div class="japa-feature-pill">
-                                    <span class="japa-bullet">✦</span>
-                                    <span>Peaceful Deity Darshan themes</span>
-                                </div>
-                                <div class="japa-feature-pill">
-                                    <span class="japa-bullet">✦</span>
-                                    <span>Improves attention and quality of japa</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ecosystem-card-footer">
-                        <a href="https://play.google.com/store/apps/details?id=com.bhaktilatabeej.japasanga&pli=1" target="_blank" rel="noopener noreferrer" class="btn btn-dark ecosystem-action-btn app-store-btn">
-                            <i class="fa-brands fa-google-play" style="color: #4cd964; font-size: 1.15rem;"></i>
-                            <span>Download Japa Sanga on Google Play</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                </div>
-
             </div>
+        </section>
 
-            <!-- Instagram Sacred Showcase -->
-            <div class="insta-community-block" id="instagram">
-                <div class="insta-header-wrap">
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-handle-badge">
-                        <i class="fa-brands fa-instagram"></i> @rachayati.designs
-                    </a>
-                    <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 8px;">Sacred Keepsakes In Devotee Homes</h3>
-                    <p class="section-sub-desc">Follow our devotional journey, behind-the-scenes craft stories & sacred inspirations.</p>
-                </div>
+    </main>
 
-                <div class="insta-grid">
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card">
-                        <img src="Product%20Catalogue/Bandhanwar/Mahamantra%20Bandhanwar%20-%20Multicolor%20-%20English/1.png" alt="Multicolor Mahamantra Bandhanwar" class="insta-post-img" onerror="this.src='Logo.jpg'">
-                        <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
-                    </a>
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card">
-                        <img src="Product%20Catalogue/Fridge%20Magnet/Jagannath%20Magnet/1.png" alt="Jai Jagannath Magnet" class="insta-post-img" onerror="this.src='Logo.jpg'">
-                        <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
-                    </a>
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card">
-                        <img src="Product%20Catalogue/Tulsi%20Maharani%20Dress/Embossed%20Collection/Design%201/1.png" alt="Tulsi Maharani Dress" class="insta-post-img" onerror="this.src='Logo.jpg'">
-                        <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
-                    </a>
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card">
-                        <img src="Product%20Catalogue/Led%20Lit%20Mahamantra/1.png" alt="LED Lit Mahamantra" class="insta-post-img" onerror="this.src='Logo.jpg'">
-                        <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
-                    </a>
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card">
-                        <img src="Product%20Catalogue/Fridge%20Magnet/Hare%20Krishna%20Magnet%20-%20Peacock/1.png" alt="Peacock Magnet" class="insta-post-img" onerror="this.src='Logo.jpg'">
-                        <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
-                    </a>
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="insta-post-card">
-                        <img src="Product%20Catalogue/Bandhanwar/Jai%20Sri%20Ram%20Bandhanwar%20-%20Hindi/1.png" alt="Jai Sri Ram Bandhanwar" class="insta-post-img" onerror="this.src='Logo.jpg'">
-                        <div class="insta-post-overlay"><i class="fa-brands fa-instagram"></i></div>
-                    </a>
-                </div>
-
-                <div class="text-center">
-                    <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="btn btn-outline" style="border-color: var(--border-light);">
-                        <i class="fa-brands fa-instagram" style="color: #E1306C;"></i> Follow @rachayati.designs on Instagram
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
+    <!-- FOOTER (ALL SIX POLICIES ORGANIZED) -->
     <footer class="main-footer" id="footer">
         <div class="container">
             <div class="footer-grid">
+                <!-- Col 1: Brand & Contact Info -->
                 <div class="footer-brand">
-                    <h3>Rachayati <span class="gold-text">Designs</span></h3>
-                    <p>Blending tradition & modernity ✨<br>Spiritual products, family games, decor & gifts to bring joy, creativity, and connection into everyday<br>life&nbsp;🌿</p>
+                    <h3>Rachyeti <span class="gold-text">Designs</span></h3>
+                    <p>Blending tradition &amp; modernity ✨<br>Spiritual products, family games, decor &amp; gifts to bring joy, creativity, and connection into everyday life 🌿</p>
+                    <div class="footer-contact-brief">
+                        <p><i class="fa-solid fa-location-dot gold-text"></i> Dev Sai Sportshome, Sector 1 Greater Noida West</p>
+                        <p><i class="fa-solid fa-user-check gold-text"></i> Founder / Grievance: Shivangi Aneja</p>
+                        <p><a href="tel:+919667748356"><i class="fa-solid fa-phone gold-text"></i> +91 96677 48356</a></p>
+                    </div>
                     <div class="footer-social-links">
-                        <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!" target="_blank" class="footer-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="footer-social-btn" title="Instagram (@rachayati.designs)"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="mailto:rachayati.designs@gmail.com" class="footer-social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://wa.me/919667748356?text=Namaste%20Rachyeti%20Designs!" target="_blank" class="footer-social-btn" title="WhatsApp" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/rachayati.designs/" target="_blank" class="footer-social-btn" title="Instagram (@rachayati.designs)" aria-label="Visit Instagram page"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="mailto:rachayati.designs@gmail.com" class="footer-social-btn" title="Email" aria-label="Send email"><i class="fa-solid fa-envelope"></i></a>
                     </div>
                 </div>
 
+                <!-- Col 2: Navigation -->
                 <div class="footer-col">
-                    <h4>Collections & Categories</h4>
+                    <h4>Rachyeti Designs</h4>
                     <ul class="footer-links-list">
-                        <li><a href="shop.html?category=all">All 40 Products</a></li>
-                        <li><a href="shop.html?category=bandhanwar">Sacred Bandhanwars</a></li>
-                        <li><a href="shop.html?category=fridge-magnet">Devotional Fridge Magnets</a></li>
-                        <li><a href="shop.html?category=tulsi-dress">Tulsi Maharani Dresses</a></li>
-                        <li><a href="shop.html?category=led-mahamantra">LED Lit Mahamantra</a></li>
-                        <li><a href="shop.html?category=wall-hanging">Sacred Wall Hangings</a></li>
-                        <li><a href="shop.html?category=car-dashboard">Car Dashboard & Hanging</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="collections.html">Collections</a></li>
+                        <li><a href="index.html#story">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="https://bhaktilatabeej.com/" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); font-weight: 600;"><i class="fa-solid fa-graduation-cap"></i> Spiritual Courses (Bhakti Lata Beej)</a></li>
                         <li><a href="https://play.google.com/store/apps/details?id=com.bhaktilatabeej.japasanga&pli=1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google-play"></i> Japa Sanga App</a></li>
                     </ul>
                 </div>
 
+                <!-- Col 3: Customer Support Policies -->
                 <div class="footer-col">
+                    <h4>Customer Support</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="shipping-policy.html">Shipping &amp; Delivery</a></li>
+                        <li><a href="cancellation-policy.html">Cancellation Policy</a></li>
+                        <li><a href="return-refund-policy.html">No Return / No Refund Policy</a></li>
+                        <li><a href="grievance-customer-support.html">Grievance / Customer Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Legal Policies -->
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+                    </ul>
+                    <div style="margin-top: 24px;">
+                        <a href="https://wa.me/919667748356?text=Namaste%20Rachyeti%20Designs!%20I%20would%20like%20to%20order%20products." target="_blank" class="btn btn-whatsapp" style="font-size: 0.8rem; padding: 8px 18px; width: fit-content;">
+                            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 5: Gratitude -->
+                <div class="footer-col footer-col-gratitude">
                     <h4>Our Gratitude</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;">
-                        Blessed by & serving sacred temples:
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 500;">
+                        Blessed by &amp; serving sacred temples:
                     </p>
                     <ul class="footer-links-list gratitude-temples-list">
                         <li>ISKCON Aravade</li>
@@ -417,26 +520,23 @@
                         <li>ISKCON Rishikesh</li>
                     </ul>
                 </div>
-
-                <div class="footer-col">
-                    <h4>Direct Inquiries</h4>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 10px;">
-                        <i class="fa-solid fa-location-dot gold-text"></i> Pan-India Express Delivery
-                    </p>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 10px;">
-                        <i class="fa-brands fa-whatsapp wa-green-text"></i> Instant Order Assistance
-                    </p>
-                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">
-                        <i class="fa-solid fa-globe gold-text"></i> Only Bulk order for International
-                    </p>
-                    <a href="https://wa.me/919667748356?text=Namaste%20Rachayati%20Designs!%20I%20would%20like%20to%20order%20products." target="_blank" class="btn btn-whatsapp" style="font-size: 0.8rem; padding: 8px 18px; width: fit-content;">
-                        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-                    </a>
-                </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Rachayati Designs. All rights reserved.</p>
+                <p>&copy; <span id="currentYear">2026</span> Rachyeti Designs. All rights reserved.</p>
+                <div class="footer-bottom-legal-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+                    <span>•</span>
+                    <a href="shipping-policy.html">Shipping &amp; Delivery</a>
+                    <span>•</span>
+                    <a href="return-refund-policy.html">No Return / No Refund</a>
+                    <span>•</span>
+                    <a href="cancellation-policy.html">Cancellation</a>
+                    <span>•</span>
+                    <a href="grievance-customer-support.html">Grievance</a>
+                </div>
                 <p>Designed with <i class="fa-solid fa-heart gold-text"></i> for conscious spiritual living</p>
             </div>
         </div>
@@ -507,6 +607,23 @@
                             <i class="fa-regular fa-heart"></i>
                         </button>
                     </div>
+
+                    <!-- Notice & Policy Badges inside Modal -->
+                    <div class="product-policy-notice" style="margin-top: 14px;">
+                        <i class="fa-solid fa-shield-halved gold-text"></i> Handcrafted Art • By ordering on WhatsApp, you agree to our 
+                        <a href="terms-and-conditions.html" target="_blank">Terms</a> &amp; 
+                        <a href="return-refund-policy.html" target="_blank">No Return / No Refund Policy</a>.
+                    </div>
+                    <div class="product-policy-badges" style="margin-top: 10px;">
+                        <a href="shipping-policy.html" class="policy-badge-link" target="_blank">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <span><strong>Shipping &amp; Delivery</strong><small>Pan-India Express Service</small></span>
+                        </a>
+                        <a href="return-refund-policy.html" class="policy-badge-link" target="_blank">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <span><strong>No Return / No Refund</strong><small>Statutory remedies apply</small></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -517,7 +634,7 @@
         <div class="drawer-panel">
             <div class="drawer-header">
                 <h3>Saved Favorites (<span id="drawerWishlistCount">0</span>)</h3>
-                <button class="drawer-close" id="wishlistCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+                <button class="drawer-close" id="wishlistCloseBtn" aria-label="Close saved favorites drawer"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="drawer-body" id="wishlistItemsContainer">
                 <!-- JS populated -->
@@ -535,7 +652,7 @@
         <div class="drawer-panel">
             <div class="drawer-header">
                 <h3>Shopping Cart (<span id="drawerCartCount">0</span>)</h3>
-                <button class="drawer-close" id="cartCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+                <button class="drawer-close" id="cartCloseBtn" aria-label="Close shopping cart drawer"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="drawer-body" id="cartItemsContainer">
                 <!-- JS populated -->
@@ -543,11 +660,24 @@
             <div class="drawer-footer" id="cartFooter" style="display: none;">
                 <div class="drawer-total-row">
                     <span>Estimated Total:</span>
-                    <span style="color: var(--gold-primary);">₹<span id="cartTotalPrice">0</span></span>
+                    <span style="color: var(--gold-primary);" id="drawerCartTotal">₹<span id="cartTotalPrice">0</span></span>
+                </div>
+                <!-- Policy Notice before WhatsApp Order -->
+                <div class="drawer-policy-notice">
+                    By placing an order on WhatsApp, you agree to our 
+                    <a href="terms-and-conditions.html" target="_blank">Terms</a> &amp; 
+                    <a href="return-refund-policy.html" target="_blank">No Return / No Refund Policy</a>.
                 </div>
                 <button class="btn btn-whatsapp" style="width: 100%;" id="whatsappCheckoutBtn">
                     <i class="fa-brands fa-whatsapp"></i> Send Order on WhatsApp
                 </button>
+                <div class="drawer-policy-links">
+                    <a href="shipping-policy.html" target="_blank"><i class="fa-solid fa-truck-fast"></i> Shipping</a>
+                    <span>•</span>
+                    <a href="return-refund-policy.html" target="_blank"><i class="fa-solid fa-rotate-left"></i> Returns</a>
+                    <span>•</span>
+                    <a href="terms-and-conditions.html" target="_blank">Terms</a>
+                </div>
                 <a href="shop.html" class="btn btn-outline" style="width: 100%; font-size: 0.84rem; text-align: center;" onclick="closeCartDrawer()">
                     <i class="fa-solid fa-plus gold-text"></i> Add More Products from Store
                 </a>
@@ -570,7 +700,7 @@
         <span class="wa-tooltip">Order & Inquire on WhatsApp</span>
     </a>
 
-    <!-- Custom Script -->
-    <script src="app.js?v=9"></script>
+    <!-- Custom Script (Deferred for Instant First Paint) -->
+    <script src="app.js?v=11" defer></script>
 </body>
 </html>

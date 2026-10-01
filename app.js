@@ -1046,10 +1046,11 @@ function getWhatsAppUrl(customText) {
 
 function getProductImagePath(product, index = 0) {
     if (!product || !product.images || product.images.length === 0) {
-        return 'Logo.jpg';
+        return 'Logo.webp';
     }
     const img = product.images[index] || product.images[0];
-    return encodeURI(img);
+    const webpImg = img.replace(/\.(png|jpe?g)$/i, '.webp');
+    return encodeURI(webpImg);
 }
 
 function getVariantShortName(product) {
@@ -1230,12 +1231,12 @@ function renderFeaturedCollection() {
     elements.featuredProductsGrid.innerHTML = collectionsList.map(col => `
         <div class="collection-card" onclick="location.href='${col.sampleProductUrl}'">
             <div class="collection-card-media">
-                <img src="${col.image}" alt="${col.title}" class="collection-card-img" onerror="this.src='Logo.jpg'">
+                <img src="${col.image.replace(/\.(png|jpe?g)$/i, '.webp')}" alt="${col.title}" class="collection-card-img" width="400" height="400" loading="lazy" onerror="this.src='Logo.webp'">
                 <span class="collection-card-badge">${col.badge}</span>
             </div>
             <div class="collection-card-body">
                 <div>
-                    <h2 class="collection-category-title">${col.title}</h2>
+                    <h3 class="collection-category-title">${col.title}</h3>
                     <p class="collection-featured-title">
                         <i class="fa-solid fa-tag gold-text"></i>
                         <span>${col.featuredItem}</span>
@@ -1358,9 +1359,9 @@ function renderShopCatalog() {
         return `
             <div class="shop-card" onclick="window.location.href='product.html?id=${item.id}'">
                 <div class="shop-card-media">
-                    <img src="${imgSrc}" alt="${item.name}" class="shop-card-img" loading="lazy" onerror="this.src='Logo.jpg'">
+                    <img src="${imgSrc}" alt="${item.name}" class="shop-card-img" width="300" height="300" loading="lazy" onerror="this.src='Logo.webp'">
                     <span class="shop-card-tag">${item.tag}</span>
-                    <button class="shop-card-wishlist ${isWishlisted ? 'active' : ''}" onclick="event.stopPropagation(); toggleWishlist('${item.id}', event)" title="Save to Wishlist">
+                    <button class="shop-card-wishlist ${isWishlisted ? 'active' : ''}" onclick="event.stopPropagation(); toggleWishlist('${item.id}', event)" title="Save to Wishlist" aria-label="Save ${item.name} to Wishlist">
                         <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
                     </button>
                 </div>
@@ -1697,14 +1698,15 @@ function renderPageGallery() {
     // Render ordered thumbnail buttons (1, 2, 3...)
     thumbsStrip.innerHTML = images.map((img, idx) => {
         const isActive = idx === state.pageMediaIndex;
-        const encodedSrc = encodeURI(img);
+        const encodedSrc = encodeURI(img.replace(/\.(png|jpe?g)$/i, '.webp'));
         
         return `
             <button class="page-thumb-btn ${isActive ? 'active' : ''}" 
                     onclick="switchPageGalleryMedia(${idx})" 
                     title="View Photo ${idx + 1}"
+                    aria-label="View photo ${idx + 1} of ${product.name}"
                     data-thumb-index="${idx}">
-                <img src="${encodedSrc}" alt="${product.name} thumb ${idx + 1}" onerror="this.src='Logo.jpg'">
+                <img src="${encodedSrc}" alt="${product.name} thumb ${idx + 1}" width="60" height="60" loading="lazy" onerror="this.src='Logo.webp'">
             </button>
         `;
     }).join('');
@@ -2337,6 +2339,8 @@ function updateBadgeCounts() {
     
     if (elements.wishlistCount) elements.wishlistCount.textContent = wCount;
     if (elements.cartCount) elements.cartCount.textContent = cCount;
+    if (elements.wishlistToggleBtn) elements.wishlistToggleBtn.setAttribute('aria-label', `Wishlist: ${wCount} items`);
+    if (elements.cartToggleBtn) elements.cartToggleBtn.setAttribute('aria-label', `Cart: ${cCount} items`);
     if (elements.drawerWishlistCount) elements.drawerWishlistCount.textContent = wCount;
     if (elements.drawerCartCount) elements.drawerCartCount.textContent = cCount;
 }
@@ -2364,7 +2368,7 @@ function renderWishlistDrawer() {
         
         return `
             <div class="drawer-item">
-                <img src="${imgSrc}" alt="${item.name}" class="drawer-item-img" onerror="this.src='Logo.jpg'">
+                <img src="${imgSrc}" alt="${item.name}" class="drawer-item-img" width="64" height="64" loading="lazy" onerror="this.src='Logo.webp'">
                 <div class="drawer-item-details">
                     <div class="drawer-item-title">${item.name}</div>
                     <div class="drawer-item-pricing">
@@ -2372,10 +2376,10 @@ function renderWishlistDrawer() {
                         <small style="text-decoration: line-through; color: #999;">₹${item.mrp}</small>
                     </div>
                     <div class="drawer-item-actions-row">
-                        <button class="btn btn-outline" style="font-size: 0.75rem; padding: 4px 10px;" onclick="addToCart(PRODUCTS_DATA.find(p => p.id === '${item.id}'))" title="Add to cart">
+                        <button class="btn btn-outline" style="font-size: 0.75rem; padding: 4px 10px;" onclick="addToCart(PRODUCTS_DATA.find(p => p.id === '${item.id}'))" title="Add to cart" aria-label="Add ${item.name} to cart">
                             <i class="fa-solid fa-cart-shopping"></i> Add to Cart
                         </button>
-                        <button class="drawer-item-remove" onclick="toggleWishlist('${item.id}')" title="Remove">
+                        <button class="drawer-item-remove" onclick="toggleWishlist('${item.id}')" title="Remove" aria-label="Remove ${item.name} from saved favorites">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -2416,7 +2420,7 @@ function renderCartDrawer() {
         
         return `
             <div class="drawer-item">
-                <img src="${imgSrc}" alt="${item.name}" class="drawer-item-img" onerror="this.src='Logo.jpg'">
+                <img src="${imgSrc}" alt="${item.name}" class="drawer-item-img" width="64" height="64" loading="lazy" onerror="this.src='Logo.webp'">
                 <div class="drawer-item-details">
                     <div class="drawer-item-title">${item.name}</div>
                     <div class="drawer-item-pricing">
@@ -2426,11 +2430,11 @@ function renderCartDrawer() {
                     ${item.dimension ? `<small style="color: var(--text-muted); font-size: 0.72rem;">${item.dimension}</small>` : ''}
                     <div class="drawer-item-actions-row">
                         <div class="drawer-qty-stepper">
-                            <button type="button" class="drawer-qty-btn minus" onclick="updateCartQuantity('${item.id}', -1)" title="Decrease"><i class="fa-solid fa-minus"></i></button>
+                            <button type="button" class="drawer-qty-btn minus" onclick="updateCartQuantity('${item.id}', -1)" title="Decrease" aria-label="Decrease quantity of ${item.name}"><i class="fa-solid fa-minus"></i></button>
                             <span class="drawer-qty-value">${item.quantity}</span>
-                            <button type="button" class="drawer-qty-btn plus" onclick="updateCartQuantity('${item.id}', 1)" title="Increase"><i class="fa-solid fa-plus"></i></button>
+                            <button type="button" class="drawer-qty-btn plus" onclick="updateCartQuantity('${item.id}', 1)" title="Increase" aria-label="Increase quantity of ${item.name}"><i class="fa-solid fa-plus"></i></button>
                         </div>
-                        <button type="button" class="drawer-item-remove" onclick="removeFromCart('${item.id}')" title="Remove item">
+                        <button type="button" class="drawer-item-remove" onclick="removeFromCart('${item.id}')" title="Remove item" aria-label="Remove ${item.name} from cart">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -2451,12 +2455,12 @@ function renderCartDrawer() {
                 <div class="drawer-upsell-list">
                     ${upsellItems.map(uProd => `
                         <div class="drawer-upsell-item">
-                            <img src="${getProductImagePath(uProd, 0)}" alt="${uProd.name}" class="drawer-upsell-img" onerror="this.src='Logo.jpg'">
+                            <img src="${getProductImagePath(uProd, 0)}" alt="${uProd.name}" class="drawer-upsell-img" width="48" height="48" loading="lazy" onerror="this.src='Logo.webp'">
                             <div class="drawer-upsell-info">
                                 <span class="drawer-upsell-name">${uProd.name}</span>
                                 <span class="drawer-upsell-price">₹${uProd.price}</span>
                             </div>
-                            <button class="drawer-upsell-add-btn" onclick="addToCart(PRODUCTS_DATA.find(p => p.id === '${uProd.id}'), 1)" title="Add to cart">
+                            <button class="drawer-upsell-add-btn" onclick="addToCart(PRODUCTS_DATA.find(p => p.id === '${uProd.id}'), 1)" title="Add to cart" aria-label="Add ${uProd.name} to cart">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
@@ -2634,6 +2638,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     setupEventListeners();
     updateBadgeCounts();
+    
+    if (elements.currentYear) {
+        elements.currentYear.textContent = new Date().getFullYear();
+    }
     
     // Check if on dedicated product.html page
     if (document.getElementById('productDetailPage')) {
