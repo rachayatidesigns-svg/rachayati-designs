@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.rachayetidesigns.com/sitemap.xml
+Sitemap: https://www.rachayatidesigns.com/sitemap.xml
